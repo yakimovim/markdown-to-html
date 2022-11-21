@@ -30,10 +30,31 @@ namespace MarkdownToHtml
             return _htmlBuilder.GetHtml();
         }
 
-        private void ProcessBlock(Block block)
+        private void ProcessBlock(Block block, bool isListItemBlock = false)
         {
             switch (block)
             {
+                case BlankLineBlock: breakingLineBlock:
+                    break;
+                case ThematicBreakBlock thematicBreakBlock:
+                    _htmlBuilder.WriteLineBreak();
+                    break;
+                case ListBlock listBlock:
+                    _htmlBuilder.StartList(listBlock.IsOrdered);
+                    foreach (var item in listBlock)
+                    {
+                        ProcessBlock(item);
+                    }
+                    _htmlBuilder.EndList(listBlock.IsOrdered);
+                    break;
+                case ListItemBlock listItemBlock:
+                    _htmlBuilder.StartListItem();
+                    foreach (var itemBlock in listItemBlock)
+                    {
+                        ProcessBlock(itemBlock, true);
+                    }
+                    _htmlBuilder.EndListItem();
+                    break;
                 case HeadingBlock headingBlock:
                     _htmlBuilder.StartHeading(headingBlock.Level);
                     foreach (var inline in headingBlock.Inline)
@@ -43,12 +64,14 @@ namespace MarkdownToHtml
                     _htmlBuilder.EndHeading(headingBlock.Level);
                     break;
                 case ParagraphBlock paragraphBlock:
-                    _htmlBuilder.StartParagraph();
+                    if(!isListItemBlock)
+                        _htmlBuilder.StartParagraph();
                     foreach (var inline in paragraphBlock.Inline)
                     {
                         ProcessInline(inline);
                     }
-                    _htmlBuilder.EndParagraph();
+                    if(!isListItemBlock)
+                        _htmlBuilder.EndParagraph();
                     break;
                 case FencedCodeBlock fencedCodeBlock:
                     _htmlBuilder.StartCode(fencedCodeBlock.Info);

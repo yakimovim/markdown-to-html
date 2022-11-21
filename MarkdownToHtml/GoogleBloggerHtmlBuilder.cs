@@ -24,7 +24,7 @@
         public override void EndCode(string? info)
         {
             Writer.Indent = _indentBeforeCode;
-            Writer.WriteLine("\n</code>");
+            Writer.WriteLine("</code>");
             Writer.Indent--;
             Writer.WriteLine("</pre>");
         }

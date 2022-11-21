@@ -79,13 +79,20 @@ namespace MarkdownToHtml
             switch((delimiterChar, delimiterCount))
             {
                 case ('*', 1):
+                case ('_', 1):
                     {
                         StartItalic();
                         break;
                     }
                 case ('*', 2):
+                case ('_', 2):
                     {
                         StartBold();
+                        break;
+                    }
+                case ('~', 2):
+                    {
+                        StartStrikethrough();
                         break;
                     }
                 default:
@@ -106,18 +113,29 @@ namespace MarkdownToHtml
             Writer.Write("<b>");
         }
 
+        protected virtual void StartStrikethrough()
+        {
+            Writer.Write("<s>");
+        }
         public virtual void EndSpan(char delimiterChar, int delimiterCount)
         {
             switch ((delimiterChar, delimiterCount))
             {
                 case ('*', 1):
+                case ('_', 1):
                     {
                         EndItalic();
                         break;
                     }
                 case ('*', 2):
+                case ('_', 2):
                     {
                         EndBold();
+                        break;
+                    }
+                case ('~', 2):
+                    {
+                        EndStrikethrough();
                         break;
                     }
                 default:
@@ -136,6 +154,38 @@ namespace MarkdownToHtml
         protected virtual void EndBold()
         {
             Writer.Write("</b>");
+        }
+
+        protected virtual void EndStrikethrough()
+        {
+            Writer.Write("</s>");
+        }
+
+        public virtual void StartList(bool isOrdered)
+        {
+            Writer.WriteLine(isOrdered ? "<ol>" : "<ul>");
+            Writer.Indent++;
+        }
+
+        public virtual void EndList(bool isOrdered)
+        {
+            Writer.Indent--;
+            Writer.WriteLine(isOrdered ? "</ol>" : "</ul>");
+        }
+
+        public virtual void StartListItem()
+        {
+            Writer.Write("<li>");
+        }
+
+        public virtual void EndListItem()
+        {
+            Writer.WriteLine("</li>");
+        }
+
+        public virtual void WriteLineBreak()
+        {
+            Writer.WriteLine("<hr/>");
         }
     }
 }
