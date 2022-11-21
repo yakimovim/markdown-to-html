@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32922.545
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarkdownToHtml", "MarkdownToHtml\MarkdownToHtml.csproj", "{5A9849A8-0727-4DB7-8DA9-E0546ABB2DE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkdownToHtml.Tests", "MarkdownToHtml.Tests\MarkdownToHtml.Tests.csproj", "{7F4BA282-DA30-4AE3-B567-0AF3259A8CE7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5A9849A8-0727-4DB7-8DA9-E0546ABB2DE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A9849A8-0727-4DB7-8DA9-E0546ABB2DE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A9849A8-0727-4DB7-8DA9-E0546ABB2DE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A9849A8-0727-4DB7-8DA9-E0546ABB2DE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F4BA282-DA30-4AE3-B567-0AF3259A8CE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F4BA282-DA30-4AE3-B567-0AF3259A8CE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F4BA282-DA30-4AE3-B567-0AF3259A8CE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F4BA282-DA30-4AE3-B567-0AF3259A8CE7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4F0DE3F5-FD82-4135-9EF4-20A6D078C222}
+	EndGlobalSection
+EndGlobal
