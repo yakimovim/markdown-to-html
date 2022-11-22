@@ -13,15 +13,15 @@ namespace MarkdownToHtml
     {
         private readonly IConsole _console;
 
-        [Argument(0)]
+        [Argument(0, Description = "Path to markdown file", Name = "Input markdown file")]
         [Required]
         public string InputMarkdownFile { get; }
 
-        [Option("-o|--output")]
+        [Option("-o|--output", Description = "Path to output HTML file")]
         [Required]
         public string OutputHtmlFile { get; set; }
 
-        [Option]
+        [Option(Description = "Target HTML format")]
         [Required]
         public TargetTypes Target { get; set; }
 
