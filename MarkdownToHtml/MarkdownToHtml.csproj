@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Markdig" Version="0.30.4" />
+    <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="4.0.2" />
   </ItemGroup>
 
 </Project>
