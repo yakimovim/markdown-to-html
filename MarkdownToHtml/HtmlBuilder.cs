@@ -187,5 +187,35 @@ namespace MarkdownToHtml
         {
             Writer.WriteLine("<hr/>");
         }
+
+        public virtual void StartTable()
+        {
+            Writer.WriteLine("<table border='1'>");
+        }
+
+        public virtual void EndTable()
+        {
+            Writer.WriteLine("</table>");
+        }
+
+        public virtual void StartTableRow()
+        {
+            Writer.WriteLine("<tr>");
+        }
+
+        public virtual void EndTableRow()
+        {
+            Writer.WriteLine("</tr>");
+        }
+
+        public virtual void StartTableCell(bool isHeader)
+        {
+            Writer.WriteLine(isHeader ? "<th>" : "<td>");
+        }
+
+        public virtual void EndTableCell(bool isHeader)
+        {
+            Writer.WriteLine(isHeader ? "</th>" : "</td>");
+        }
     }
 }

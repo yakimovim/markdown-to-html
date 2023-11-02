@@ -44,5 +44,10 @@ namespace MarkdownToHtml
         {
             return _htmlEncoder.Encode(line);
         }
+
+        public override void StartTable()
+        {
+            Writer.WriteLine("<table class='grid'>");
+        }
     }
 }

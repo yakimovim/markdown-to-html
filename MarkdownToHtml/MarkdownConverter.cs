@@ -1,4 +1,5 @@
 ﻿using Markdig;
+using Markdig.Extensions.Tables;
 using Markdig.Syntax;
 using Markdig.Syntax.Inlines;
 
@@ -84,6 +85,30 @@ namespace MarkdownToHtml
                     break;
                 case LinkReferenceDefinitionGroup:
                     break; // We do not support it
+                case Table tableBlock:
+                    _htmlBuilder.StartTable();
+                    foreach (var tableRow in tableBlock)
+                    {
+                        ProcessBlock(tableRow);
+                    }
+                    _htmlBuilder.EndTable();
+                    break;
+                case TableRow tableRow:
+                    _htmlBuilder.StartTableRow();
+                    foreach (var tableCell in tableRow)
+                    {
+                        _htmlBuilder.StartTableCell(tableRow.IsHeader);
+                        ProcessBlock(tableCell, true);
+                        _htmlBuilder.EndTableCell(tableRow.IsHeader);
+                    }
+                    _htmlBuilder.EndTableRow();
+                    break;
+                case TableCell tableCell:
+                    foreach(var tableCellContent in tableCell)
+                    {
+                        ProcessBlock(tableCellContent, tableCell.Count == 1);
+                    }
+                    break;
                 default:
                     Console.WriteLine($"Unable to process block of type '{block.GetType().Name}'");
                     break;
